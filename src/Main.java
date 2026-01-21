@@ -1,37 +1,35 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
-        int age = 14;
-        int year = 2026;
-        int quantity = 1;
+        Scanner scanner = new Scanner(System.in);
 
-        double price = 19425.32;
-        double gpa = 3.5;
-        double temperature = -12.5;
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
 
-        char grade = 'A';
-        char symbol = '!';
-        char currency = '$';
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
 
-        boolean isStudent = false;
-        boolean forSale = true;
-        boolean isOnline = true;
+        System.out.print("What is your gpa: ");
+        double gpa = scanner.nextDouble();
 
-        String name = "Bro Code";
-        String food = "pizza";
-        String email = "litonmioa@gmail.com";
-        String car = "Mustang";
-        String color = "red";
+        System.out.print("Are you a student? (true/false): ");
+        boolean isStudent = scanner.nextBoolean();
 
-        System.out.println("Your choice is a " + color + " " + year + " " + car);
-        System.out.println("The price is: " + currency + price);
+        System.out.println("Hello " + name);
+        System.out.println("You are " + age + " years old" );
+        System.out.println("You gpa is: " + gpa);
 
-        if (forSale) {
-            System.out.println("There is a " + car + " for sale");
+        if (isStudent) {
+            System.out.println("You are enrolled as a student");
 
         }
         else {
-            System.out.println("The " + car + " is not for sale");
+            System.out.println("You are NOT enrolled");
         }
+
+        scanner.close();
+
     }
 }
