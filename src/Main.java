@@ -1,22 +1,24 @@
-import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        Random random = new Random();
+        Scanner scanner = new Scanner(System.in);
 
-        int number1;
-        int number2;
-        int number3;
+        double a;
+        double b;
+        double c;
 
-        number1 = random.nextInt(1, 101);
-        number2 = random.nextInt(1, 101);
-        number3 = random.nextInt(1, 101);
+        System.out.print("Enter the length of side A: ");
+        a = scanner.nextDouble();
 
-        System.out.println(number1);
-        System.out.println(number2);
-        System.out.println(number3);
+        System.out.print("Enter the length of side B: ");
+        b = scanner.nextDouble();
 
+        c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+        System.out.println("The hypotenuse (side c) is: " + c + "cm");
+
+        scanner.close();
 
     }
 }
