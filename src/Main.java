@@ -1,27 +1,19 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        String name = "Spongebob";
+        char firstLetter = 'S';
+        int age = 30;
+        double height = 60.5;
+        boolean isEmployed = true;
 
-        double radius;
-        double circumference;
-        double area;
-        double volume;
+        System.out.printf("Hello %s\n", name);
+        System.out.printf("Your name starts with a %c\n", firstLetter);
+        System.out.printf("You are %d years old\n", age);
+        System.out.printf("You are %.1f inches tall\n", height);
+        System.out.printf("Employed: %b\n", isEmployed);
 
-        System.out.print("Enter the radius: ");
-        radius = scanner.nextDouble();
-
-        circumference = 2 * Math.PI * radius;
-        area = Math.PI * Math.pow(radius, 2);
-        volume = (4.0 / 3.0) * Math.PI * Math.pow(radius, 3);
-
-        System.out.printf("The circumference is: %.1fcm\n", circumference);
-        System.out.printf("The area is: %.1fcm^2\n", area);
-        System.out.printf("The volume is: %.1fcm^3\n",  volume);
-
-        scanner.close();
+        System.out.printf("%s is %d years old", name, age);
 
     }
 }
