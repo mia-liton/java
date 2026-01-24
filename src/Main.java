@@ -5,22 +5,15 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        String username;
+        int number = 0;
 
-        System.out.print("Enter your new username: ");
-        username = scanner.nextLine();
-
-        if (username.length() < 4 || username.length() > 12) {
-            System.out.println("Username must be between 4 -12 characters");
-
-        } else if (username.contains(" ") || username.contains("_")) {
-            System.out.println("Username must not contain spaces or underscores");
-
-        } else {
-            System.out.println("Welcome," + username);
+        while (number < 1 || number > 10) {
+            System.out.print("Enter a number between 1 - 10: ");
+            number = scanner.nextInt();
         }
 
-        scanner.close();
+        System.out.println("You picked " + number);
 
+        scanner.close();
     }
 }
