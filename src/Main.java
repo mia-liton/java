@@ -5,19 +5,14 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        double temp;
-        double newTemp;
-        String unit;
+        System.out.print("Enter the day of the week: ");
+        String day = scanner.nextLine();
 
-        System.out.print("Enter the temperature: ");
-        temp = scanner.nextDouble();
-
-        System.out.print("Convert to Celsius or Fahrenheit? (C or F): ");
-        unit = scanner.next().toUpperCase();
-
-        newTemp = (unit.equals("C")) ? (temp - 32) * 5 / 9 : (temp * 5 / 9) + 32;
-
-        System.out.printf("%.1f %s", newTemp, unit);
+        switch (day) {
+            case "Monday", "Tuesday", "Wednesday", "Thursday" ,"Friday" -> System.out.println("It is a weekday");
+            case "Sunday", "Saturday" -> System.out.println("It is the weekend");
+            default -> System.out.println(day + " is not a day");
+        }
 
         scanner.close();
 
