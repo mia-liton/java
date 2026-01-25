@@ -1,47 +1,22 @@
 public class Main {
     public static void main(String[] args) {
 
-        int age = 12;
-
-        if (ageCheck(age)) {
-            System.out.println("You mau sign up");
-        }
-        else {
-            System.out.println("You must be 18+ to sign up");
-        }
-
-
-    }
-
-    static void happyBirthday(String name, int age) {
-        System.out.println("Happy birthday to you");
-        System.out.printf("Happy birthday dear %s\n", name);
-        System.out.printf("You are %d years old\n", age);
-        System.out.println("Happy birthday to you\n");
-    }
-    static double square(double number) {
-        return number * number;
-    }
-    static double cube(double number) {
-        return number * number * number;
-
-    }
-    static String getFullName(String first, String last) {
-        return first + " " + last;
-
-    }
-
-    static boolean ageCheck(int age) {
-
-        if (age >= 18) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    String pizza = bakePizza("flat bread", "mozzarella", "pepperoni");
+        System.out.println(pizza);
 
     }
 
 
+    static String bakePizza(String bread) {
+        return bread + " pizza";
+    }
+
+    static String bakePizza(String bread, String cheese) {
+        return cheese + " " + bread + " pizza";
+    }
+
+    static String bakePizza(String bread, String cheese, String topping) {
+        return topping +" " + cheese + " " + bread + " pizza";
+    }
 
 }
