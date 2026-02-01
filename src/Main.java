@@ -1,74 +1,97 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
 
-        double balance = 0;
-        boolean isRunning = true;
-        int choice;
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        int numOfDice;
+        int total = 0;
 
-        while (isRunning) {
-            System.out.println("Banking Program");
-            System.out.println("1. Show Balance");
-            System.out.println("2. Deposit");
-            System.out.println("3. Withdraw");
-            System.out.println("4. Exit");
+        System.out.print("Enter the # of dice to roll: ");
+        numOfDice = scanner.nextInt();
 
-            System.out.print("Enter your choice (1-4): ");
-            choice = scanner.nextInt();
+        if (numOfDice > 0) {
 
-            switch (choice) {
-                case 1 -> showBalance(balance);
-                case 2 -> balance = balance + deposit();
-                case 3 -> balance = balance - withdraw(balance);
-                case 4 -> isRunning = false;
-                default -> System.out.println("Invalid choice");
+            for (int i = 0; i < numOfDice; i++) {
+                int roll = random.nextInt(1, 7);
+                printDie(roll);
+                System.out.println("You rolled: " + roll);
+                total = total + roll;
+
             }
-
+            System.out.println("Total: " + total);
         }
-
-        System.out.println("Thank you! Have a nice day");
+        else {
+            System.out.println("# of dice must be greater than 0");
+        }
 
         scanner.close();
 
     }
 
-    static void showBalance(double balance) {
-        System.out.printf("$%.2f\n", balance);
+    static void printDie(int roll) {
+        String dice1 = """
+                -------
+                |      |
+                |   .  |
+                |      |
+                -------
+                """;
+
+        String dice2 = """
+                -------
+                | .    |
+                |      |
+                |    . |
+                -------
+                """;
+
+        String dice3 = """
+                -------
+                | .    |
+                |   .  |
+                |    . |
+                -------
+                """;
+
+        String dice4 = """
+                -------
+                | .  . |
+                |      |
+                | .  . |
+                -------
+                """;
+
+        String dice5 = """
+                -------
+                | .  . |
+                |   .  |
+                | .  . |
+                -------
+                """;
+
+        String dice6 = """
+                -------
+                | .  . |
+                | .  . |
+                | .  . |
+                -------
+                """;
+
+        switch (roll) {
+            case 1 -> System.out.print(dice1);
+            case 2 -> System.out.print(dice2);
+            case 3 -> System.out.print(dice3);
+            case 4 -> System.out.print(dice4);
+            case 5 -> System.out.print(dice5);
+            case 6 -> System.out.print(dice6);
+
+            default -> System.out.println("Invalid roll");
+
+        }
     }
-    static double deposit() {
-        double amount;
-        System.out.print("Enter an amount to be deposited: ");
-        amount = scanner.nextDouble();
 
-        if (amount < 0) {
-            System.out.println("Amount can't be negative");
-            return 0;
-
-        }
-        else {
-            return amount;
-        }
 
     }
-    static double withdraw(double balance) {
-
-        double amount;
-        System.out.print("Enter amount to be withdrawn: ");
-        amount = scanner.nextDouble();
-
-        if (amount > balance) {
-            System.out.println("Insufficient Funds");
-            return 0;
-        } else if (amount < 0) {
-            System.out.println("Amount can't be negative");
-            return 0;
-
-        }
-        else {
-            return amount;
-        }
-
-    }
-}
