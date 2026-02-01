@@ -1,30 +1,34 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        System.out.println(average(0));
 
-//        int[] numbers = {1, 9, 2, 8, 3, 5, 4};
-        String[] fruits = {"apple", "orange", "banana"};
-        boolean isFound = false;
-        String target;
+    }
 
-        System.out.print("Enter a fruit to search for: ");
-        target = scanner.nextLine();
+//    static int add(int... numbers) {
+//        int sum = 0;
+//
+//        for (int number : numbers) {
+//            sum += number;
+//        }
+//
+//        return sum;
+//    }
 
-        for (int i = 0; i < fruits.length; i++) {
-            if (fruits[i].equals(target)) {
-                System.out.println("Element found at index: " + i);
-                isFound = true;
-                break;
-            }
+    static double average(double... numbers) {
 
-            }
-        if (!isFound) {
-            System.out.println("Element not found in the array");
+        double sum = 0;
+
+        if (numbers.length == 0) {
+            return 0;
         }
-        scanner.close();
+
+        for (double number : numbers) {
+            sum += number;
+        }
+
+        return sum / numbers.length;
+
     }
 
     }
