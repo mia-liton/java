@@ -1,34 +1,19 @@
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println(average(0));
+        String[][] groceries = {{"apple", "orange", "banana"},
+                               {"potato", "onion", "carrot"},
+                               {"chicken", "pork", "beef", "fish"}};
 
-    }
+        groceries[1][0] = "celery";
 
-//    static int add(int... numbers) {
-//        int sum = 0;
-//
-//        for (int number : numbers) {
-//            sum += number;
-//        }
-//
-//        return sum;
-//    }
+        for (String[] foods : groceries) {
+            for (String food: foods) {
+                System.out.print(food + " ");
+            }
+            System.out.println();
 
-    static double average(double... numbers) {
-
-        double sum = 0;
-
-        if (numbers.length == 0) {
-            return 0;
         }
 
-        for (double number : numbers) {
-            sum += number;
-        }
-
-        return sum / numbers.length;
-
     }
-
-    }
+}
