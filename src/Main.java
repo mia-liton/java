@@ -1,15 +1,18 @@
 public class Main {
     public static void main(String[] args) {
 
-        User user1 = new User("Smith");
-        User user2 = new User("Roy", "roy@gmail.com");
-        User user3 = new User("Sarah", "sarah@gmail.com", 27);
-        User user4 = new User();
+        Car[] cars = {new Car("Mustang", "Red"),
+                      new Car("Corvette", "Blue"),
+                      new Car("Charger", "Yellow")
+        };
 
-        System.out.println(user4.username);
-        System.out.println(user4.email);
-        System.out.println(user4.age);
+        for (Car car : cars) {
+            car.color = "black";
+        }
 
+        for (Car car : cars) {
+            car.drive();
+        }
     }
 
 }
