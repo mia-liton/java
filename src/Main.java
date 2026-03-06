@@ -1,18 +1,16 @@
 public class Main {
     public static void main(String[] args) {
 
-        Car[] cars = {new Car("Mustang", "Red"),
-                      new Car("Corvette", "Blue"),
-                      new Car("Charger", "Yellow")
-        };
+        Friend friend1 = new Friend("Smith");
+        Friend friend2 = new Friend("Roy");
+        Friend friend3 = new Friend("Sarah");
+        Friend friend4 = new Friend("Jenny");
+        Friend friend5 = new Friend("Alex");
 
-        for (Car car : cars) {
-            car.color = "black";
-        }
+       Friend.showFriends();
 
-        for (Car car : cars) {
-            car.drive();
-        }
+
+
     }
 
 }
