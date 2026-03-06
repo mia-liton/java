@@ -5,55 +5,119 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
+        int balance = 100;
+        int bet;
+        int payout;
+        String[] row;
+        String playAgain;
 
-        String[] choices = {"rock", "paper", "scissors"};
-        String playerChoice;
-        String computerChoice;
-        String playAgain = "yes";
+        System.out.println("Welcome to java slots");
+        System.out.println("Symbols: 🍒 🍉 🍋 🔔 ⭐");
 
-     do {
-         System.out.print("Enter your move (rock, paper, scissors): ");
-         playerChoice = scanner.nextLine().toLowerCase();
+        while (balance > 0) {
+            System.out.println("Current balance: $" + balance);
+            System.out.print("Place your bet amount: ");
+            bet = scanner.nextInt();
+            scanner.nextLine();
 
-         if (!playerChoice.equals("rock") &&
-                 !playerChoice.equals("paper")
-                 && !playerChoice.equals("scissors")){
+            if (bet > balance) {
+                System.out.println("Insufficient funds");
+                continue;
 
-             System.out.println("Invalid choice");
-             continue;
+            }
+            else if (bet <= 0) {
+                System.out.println("Bet must be greater than 0");
+                continue;
+            }
+            else {
+                balance = balance - bet;
 
-         }
+            }
 
-         computerChoice = choices[random.nextInt(3)];
-         System.out.println("Computer choice: " + computerChoice);
+            System.out.println("Spinning...");
+            row = spinRow();
+            printRow(row);
+            payout = getPayout(row, bet);
 
-         if (playerChoice.equals(computerChoice)) {
-             System.out.println("It's a tie!");
+            if (payout > 0) {
+                System.out.println("You won $" + payout);
+                balance = balance + payout;
+            }
+            else {
+                System.out.println("Sorry you lost this round");
+            }
 
-         } else if ((playerChoice.equals("rock") && computerChoice.equals("scissors")) ||
+            System.out.print("Do you want to play again? (Y/N): ");
+            playAgain = scanner.nextLine().toUpperCase();
 
-                 (playerChoice.equals("paper") && computerChoice.equals("rock")) ||
-                 (playerChoice.equals("scissors") && computerChoice.equals("paper"))
+            if (!playAgain.equals("Y")) {
+                break;
+            }
+        }
 
-         ) {
-             System.out.println("You win!");
-
-         }
-         else {
-             System.out.println("You lose!");
-
-         }
-
-         System.out.print("Play again (yes/no): ");
-         playAgain = scanner.nextLine().toLowerCase();
-     } while (playAgain.equals("yes"));
-
-        System.out.println("Thanks for playing");
-
+        System.out.println("Game over! Your final balance is $" + balance);
 
         scanner.close();
 
+    }
+
+    static String[] spinRow() {
+
+        String[] symbols = {"🍒","🍉","🍋", "🔔", "⭐"};
+        String[] row = new String[3];
+        Random random = new Random();
+
+        for (int i = 0; i < 3; i++) {
+            row[i] = symbols[random.nextInt(symbols.length)];
+        }
+
+
+        return row;
+    }
+
+    static void printRow(String[] row) {
+        System.out.println(" " + String.join(" | ", row));
+
+    }
+
+    static int getPayout(String[] row, int bet) {
+
+        if (row[0].equals(row[1]) && row[1].equals(row[2])) {
+            return switch (row[0]) {
+                case "🍒" -> bet * 3;
+                case  "🍉" -> bet * 4;
+                case  "🍋" -> bet * 5;
+                case "🔔" -> bet * 10;
+                case  "⭐" -> bet * 20;
+                default -> 0;
+
+            };
+        }
+
+        if (row[0].equals(row[1])) {
+            return switch (row[0]) {
+                case "🍒" -> bet * 2;
+                case  "🍉" -> bet * 3;
+                case  "🍋" -> bet * 4;
+                case "🔔" -> bet * 5;
+                case  "⭐" -> bet * 10;
+                default -> 0;
+
+            };
+        }
+
+        else  if (row[1].equals(row[2])) {
+            return switch (row[1]) {
+                case "🍒" -> bet * 2;
+                case  "🍉" -> bet * 3;
+                case  "🍋" -> bet * 4;
+                case "🔔" -> bet * 5;
+                case  "⭐" -> bet * 10;
+                default -> 0;
+
+            };
+        }
+        return 0;
 
     }
 }
