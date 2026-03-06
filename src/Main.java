@@ -1,10 +1,14 @@
 public class Main {
     public static void main(String[] args) {
 
-        Student student1 = new Student("Spongebob", 30, 3.2);
-        Student student2 = new Student("Smith", 20, 1.5);
+        User user1 = new User("Smith");
+        User user2 = new User("Roy", "roy@gmail.com");
+        User user3 = new User("Sarah", "sarah@gmail.com", 27);
+        User user4 = new User();
 
-        student2.study();
+        System.out.println(user4.username);
+        System.out.println(user4.email);
+        System.out.println(user4.age);
 
     }
 
