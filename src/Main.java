@@ -1,16 +1,13 @@
 public class Main {
     public static void main(String[] args) {
 
-        Book book1 = new Book("The fellow of the ring", 423);
-        Book book2 = new Book("The two towers", 352);
-        Book book3 = new Book("The return of the king", 416);
+        Car car = new Car("Corvette", 2025, "V8");
 
-        Book[] books = {book1, book2, book3};
+        System.out.println(car.model);
+        System.out.println(car.year);
+        System.out.println(car.engine.type);
 
-        Library library = new Library("NYC public library", 1897, books);
-        library.displayInfo();
-
-
+        car.start();
 
     }
 
