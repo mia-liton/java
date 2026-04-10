@@ -1,13 +1,12 @@
 public class Main {
     public static void main(String[] args) {
 
-        Car car = new Car("Corvette", 2025, "V8");
+       int a = Integer.parseInt("123");
+       double b = Double.parseDouble("3.14");
+       char c = "Pizza".charAt(0);
+       boolean d = Boolean.parseBoolean("true");
 
-        System.out.println(car.model);
-        System.out.println(car.year);
-        System.out.println(car.engine.type);
 
-        car.start();
 
     }
 
