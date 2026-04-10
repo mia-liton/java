@@ -1,12 +1,15 @@
 public class Main {
     public static void main(String[] args) {
 
-        Car car = new Car("Charger", "Yellow", 10000);
+        Book book1 = new Book("The fellow of the ring", 423);
+        Book book2 = new Book("The two towers", 352);
+        Book book3 = new Book("The return of the king", 416);
 
-        car.setColor("Blue");
-        car.setPrice(-100);
+        Book[] books = {book1, book2, book3};
 
-        System.out.println(car.getColor() + " " + car.getModel() + " " + car.getPrice());
+        Library library = new Library("NYC public library", 1897, books);
+        library.displayInfo();
+
 
 
     }
