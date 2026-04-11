@@ -1,28 +1,23 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        String filePath = "//home/liton/test.txt";
+        String textContent = "I like pizza!\nIt's really good\nBuy me pizza";
 
-        try {
-            System.out.print("Enter a number: ");
-            int number = scanner.nextInt();
-            System.out.println(number);
+        try (FileWriter writer = new FileWriter(filePath)) {
+            writer.write(textContent);
+            System.out.println("File has been written");
         }
-        catch (InputMismatchException e) {
-            System.out.println("That wasn't a number");
+        catch (FileNotFoundException e) {
+            System.out.println("Could not locate file location");
         }
+        catch (IOException e) {
+            System.out.println("Could not write file");
 
-        catch (ArithmeticException e) {
-            System.out.println("You can't divide by zero");
-        }
-        catch (Exception e) {
-            System.out.println("Something went wrong");
-        }
-        finally {
-            scanner.close();
         }
 
     }
