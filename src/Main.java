@@ -1,16 +1,27 @@
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Main {
     public static void main(String[] args) {
-        Dog dog1 = new Dog();
-        Dog dog2 = new Dog(){
 
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+
+            int count = 3;
             @Override
-            void speak(){
-                System.out.println("Scooby doo says ruh ruh");
+            public void run() {
+                System.out.println("Hello");
+                count--;
+
+                if (count <= 0) {
+                    System.out.println("Task completed");
+                    timer.cancel();
+                }
+
             }
         };
 
-        dog1.speak();
-        dog2.speak();
+        timer.schedule(task, 0, 1000);
 
     }
 
