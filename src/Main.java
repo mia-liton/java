@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -6,24 +6,24 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        ArrayList<String> foods = new ArrayList<>();
-
-        System.out.print("Enter the # of food you would like: ");
-        int numOfFood = scanner.nextInt();
-        scanner.nextLine();
-
-        for (int i = 1; i <= numOfFood; i++) {
-            System.out.print("Enter food #" + i + ": ");
-            String food = scanner.nextLine();
-            foods.add(food);
-
+        try {
+            System.out.print("Enter a number: ");
+            int number = scanner.nextInt();
+            System.out.println(number);
+        }
+        catch (InputMismatchException e) {
+            System.out.println("That wasn't a number");
         }
 
-        System.out.println(foods);
-
-
-        scanner.close();
-
+        catch (ArithmeticException e) {
+            System.out.println("You can't divide by zero");
+        }
+        catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
+        finally {
+            scanner.close();
+        }
 
     }
 
