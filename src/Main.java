@@ -1,20 +1,16 @@
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 public class Main {
     public static void main(String[] args) {
+        Dog dog1 = new Dog();
+        Dog dog2 = new Dog(){
 
-        LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss");
+            @Override
+            void speak(){
+                System.out.println("Scooby doo says ruh ruh");
+            }
+        };
 
-        String newDateTime = dateTime.format(formatter);
-
-        System.out.println(newDateTime);
-
-
+        dog1.speak();
+        dog2.speak();
 
     }
 
