@@ -1,63 +1,140 @@
-import javax.sound.sampled.*;
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        String filePath = "src\\On The Flip - The Grey Room _ Density & Time.wav";
-        File file = new File(filePath);
+        String filePath = "words.txt";
+        ArrayList<String> words = new ArrayList<>();
 
-        try (Scanner scanner = new Scanner(System.in);
-             AudioInputStream audioStream = AudioSystem.getAudioInputStream(file)) {
+        try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+            String line;
+            while ((line = reader.readLine()) != null) {
+                words.add(line.trim());
 
-           Clip clip = AudioSystem.getClip();
-           clip.open(audioStream);
+            }
 
-          String response = "";
-
-          while (response.equals("Q")) {
-              System.out.println("P = Play");
-              System.out.println("S = Stop");
-              System.out.println("R = Reset");
-              System.out.println("Q = Quit");
-              System.out.print("Enter your choice: ");
-
-              response = scanner.next().toUpperCase();
-
-              switch (response) {
-                  case "P" -> clip.start();
-                  case "S" -> clip.stop();
-                  case "R" -> clip.setMicrosecondPosition(0);
-                  case "Q" -> clip.close();
-                  default -> System.out.println("Invalid choice");
-              }
-
-          }
-            System.out.println("No problems detected");
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("Could not locate file");
-
-        }
-        catch (UnsupportedAudioFileException e) {
-            System.out.println("Audio file is not supported");
-        }
-        catch (LineUnavailableException e) {
-            System.out.println("Unable to access audio resource");
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not find file");
         }
         catch (IOException e) {
             System.out.println("Something went wrong");
 
         }
 
-        finally {
-            System.out.println("Bye");
-            scanner.close();
+        Random random = new Random();
+        String word = words.get(random.nextInt(words.size()));
+
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Character> wordState = new ArrayList<>();
+        int wrongGuesses = 0;
+
+        for (int i = 0; i < word.length(); i++){
+            wordState.add('_');
+
         }
 
+        System.out.println("Welcome to java hangman");
+
+        while (wrongGuesses < 6) {
+
+            System.out.print(getHangmanArt(wrongGuesses));
+
+            System.out.print("Word: ");
+
+            for (char c : wordState){
+                System.out.print(c + " ");
+
+            }
+
+            System.out.println();
+            System.out.print("Guess a letter: ");
+            char guess = scanner.next().toLowerCase().charAt(0);
+
+            if (word.indexOf(guess) >= 0){
+                System.out.println("Correct guess\n");
+
+                for (int i = 0; i < word.length(); i++) {
+                    if (word.charAt(i) == guess){
+                        wordState.set(i, guess);
+
+                    }
+                }
+
+                if (!wordState.contains('_')) {
+                    System.out.print(getHangmanArt(wrongGuesses));
+                    System.out.println("You win");
+                    System.out.println("The word was: " + word);
+                    break;
+                }
+            }
+            else {
+                wrongGuesses++;
+                System.out.println("Wrong guess\n");
+            }
+
+        }
+
+        if (wrongGuesses >= 6){
+            System.out.print(getHangmanArt(wrongGuesses));
+            System.out.println("Game over");
+            System.out.println("The word was: " + word);
+        }
+
+        scanner.close();
+
+    }
+    static String getHangmanArt(int wrongGuesses) {
+        return switch (wrongGuesses) {
+            case 0 -> """
+                      
+                      
+                      
+                      """;
+            case 1 -> """
+                       0
+                      
+                      
+                      """;
+            case 2 -> """
+                       0
+                       |
+                      
+                      
+                      """;
+            case 3 -> """
+                       0
+                       /|
+                      
+                      
+                      """;
+            case 4 -> """
+                       0
+                       /|\\
+                      
+                      
+                      """;
+            case 5 -> """
+                       0
+                       /|\\
+                       /
+                      
+                      
+                      """;
+            case 6 -> """
+                       0
+                       /|\\
+                       / \\
+                      
+                      
+                      """;
+            default -> "";
+        };
     }
 
 }
