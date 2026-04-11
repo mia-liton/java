@@ -1,24 +1,30 @@
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
 
-        String filePath = "//home/liton/test.txt";
-        String textContent = "I like pizza!\nIt's really good\nBuy me pizza";
+        String filePath = "/home/liton/test.txt";
 
-        try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write(textContent);
-            System.out.println("File has been written");
+        try ( BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+            String line;
+            while((line = reader.readLine()) != null) {
+                System.out.println(line);
+
+            }
+
         }
         catch (FileNotFoundException e) {
-            System.out.println("Could not locate file location");
-        }
-        catch (IOException e) {
-            System.out.println("Could not write file");
+            System.out.println("Could not locate file");
 
         }
+        catch (IOException e) {
+            System.out.println("Something went wrong");
+
+        }
+
 
     }
 
