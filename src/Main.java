@@ -1,32 +1,10 @@
-import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class Main {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        Product<String, Double> product1 = new Product<>("apple", 0.50);
+        Product<String, Integer> product2 = new Product<>("ticket", 15);
 
-        System.out.print("Enter # of seconds to countdown from: ");
-        int response = scanner.nextInt();
-
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-
-            int count = response;
-            @Override
-            public void run() {
-                System.out.println(count);
-                count--;
-
-                if (count < 0){
-                    System.out.println("Happy new year");
-                    timer.cancel();
-                }
-            }
-        };
-
-        timer.scheduleAtFixedRate(task, 0, 1000);
+        System.out.println(product2.getItem());
 
     }
 
