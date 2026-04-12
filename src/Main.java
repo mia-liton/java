@@ -1,29 +1,29 @@
-import java.util.HashMap;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        HashMap<String, Double> map = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a day of the week: ");
+        String response = scanner.nextLine().toUpperCase();
 
-        map.put("apple", 0.50);
-        map.put("orange", 0.75);
-        map.put("banana", 0.25);
-        map.put("coconut", 1.00);
+        try{
+            Day day = Day.valueOf(response);
 
-//        map.remove("apple");
-//        System.out.println(map.get("coconut"));
-//        System.out.println(map.containsKey("pineapple"));
-//        if (map.containsKey("apple")){
-//            System.out.println(map.get("pineapple"));
-//        }
-//        else {
-//            System.out.println("Key not found");
-//        }
-//        System.out.println(map.size());
-
-        for (String key : map.keySet()) {
-            System.out.println(key + " : $" + map.get(key));
+            switch (day){
+                case MONDAY,
+                     TUESDAY,
+                     WEDNESDAY,
+                     THURSDAY,
+                     FRIDAY -> System.out.println("It is a weekday");
+                case SATURDAY, SUNDAY -> System.out.println("It is the weekend");
+            }
         }
+        catch (IllegalArgumentException e) {
+            System.out.println("Please enter a valid day");
+        }
+
+        scanner.close();
 
     }
 
