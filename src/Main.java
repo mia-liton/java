@@ -1,22 +1,23 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+       Thread thread1 = new Thread(new MyRunnable("Ping"));
+       Thread thread2 = new Thread(new MyRunnable("Pong"));
 
-        MyRunnable myRunnable = new MyRunnable();
-        Thread thread = new Thread(myRunnable);
-        thread.setDaemon(true);
-        thread.start();
+        System.out.println("Game start");
 
-        System.out.println("You have 5 seconds to enter your name");
+       thread1.start();
+       thread2.start();
 
-        System.out.print("Enter your name: ");
-        String name = scanner.nextLine();
-        System.out.println("Hello " + name);
+       try {
+           thread1.join();
+           thread2.join();
+       }
+       catch (InterruptedException e) {
+           System.out.println("Main thread was interrupted");
+       }
 
-        scanner.close();
+        System.out.println("Game over");
 
     }
 
