@@ -1,10 +1,29 @@
+import java.util.HashMap;
+
 public class Main {
     public static void main(String[] args) {
 
-        Product<String, Double> product1 = new Product<>("apple", 0.50);
-        Product<String, Integer> product2 = new Product<>("ticket", 15);
+        HashMap<String, Double> map = new HashMap<>();
 
-        System.out.println(product2.getItem());
+        map.put("apple", 0.50);
+        map.put("orange", 0.75);
+        map.put("banana", 0.25);
+        map.put("coconut", 1.00);
+
+//        map.remove("apple");
+//        System.out.println(map.get("coconut"));
+//        System.out.println(map.containsKey("pineapple"));
+//        if (map.containsKey("apple")){
+//            System.out.println(map.get("pineapple"));
+//        }
+//        else {
+//            System.out.println("Key not found");
+//        }
+//        System.out.println(map.size());
+
+        for (String key : map.keySet()) {
+            System.out.println(key + " : $" + map.get(key));
+        }
 
     }
 
