@@ -4,24 +4,17 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a day of the week: ");
-        String response = scanner.nextLine().toUpperCase();
 
-        try{
-            Day day = Day.valueOf(response);
+        MyRunnable myRunnable = new MyRunnable();
+        Thread thread = new Thread(myRunnable);
+        thread.setDaemon(true);
+        thread.start();
 
-            switch (day){
-                case MONDAY,
-                     TUESDAY,
-                     WEDNESDAY,
-                     THURSDAY,
-                     FRIDAY -> System.out.println("It is a weekday");
-                case SATURDAY, SUNDAY -> System.out.println("It is the weekend");
-            }
-        }
-        catch (IllegalArgumentException e) {
-            System.out.println("Please enter a valid day");
-        }
+        System.out.println("You have 5 seconds to enter your name");
+
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+        System.out.println("Hello " + name);
 
         scanner.close();
 
