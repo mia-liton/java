@@ -1,23 +1,33 @@
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
-       Thread thread1 = new Thread(new MyRunnable("Ping"));
-       Thread thread2 = new Thread(new MyRunnable("Pong"));
+        Scanner scanner = new Scanner(System.in);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalTime alarmTime = null;
+        String filePath = "On The Flip - The Grey Room _ Density & Time.wav";
 
-        System.out.println("Game start");
+        while (alarmTime == null){
+            try{
+                System.out.print("Enter an alarm time (HH:MM:SS): ");
+                String inputTime = scanner.nextLine();
 
-       thread1.start();
-       thread2.start();
+                alarmTime = LocalTime.parse(inputTime, formatter);
+                System.out.println("Alarm set for " + alarmTime);
+            }
+            catch (DateTimeParseException e) {
+                System.out.println("Invalid format. Please use HH:MM:SS");
+            }
+        }
 
-       try {
-           thread1.join();
-           thread2.join();
-       }
-       catch (InterruptedException e) {
-           System.out.println("Main thread was interrupted");
-       }
+        AlarmClock alarmClock = new AlarmClock(alarmTime, filePath, scanner);
+        Thread alarmThread = new Thread(alarmClock);
+        alarmThread.start();
 
-        System.out.println("Game over");
 
     }
 
